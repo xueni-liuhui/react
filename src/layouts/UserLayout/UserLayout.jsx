@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
 const {Header, Footer, Sider, Content} = Layout;
-
-{/*本页面采用layout布局*/}
+//本页面采用layout布局
 export default class UserLayout extends Component {
   render() {
     return (

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { createStore,combineReducers } from 'redux';
 import { Row, Col } from 'antd';
-{/*本页面采用grid栅格响应式布局*/}
+//本页面采用grid栅格响应式布局
 export default class BasicLayout extends Component{
     render(){
-        {/*redux中三大重要部分，reducer、action、state*/}
+        //redux中三大重要部分，reducer、action、state
         const countReducer=function(state={count:1},action){
                     console.log(state,action)
                     switch(action.type){
@@ -31,19 +31,17 @@ export default class BasicLayout extends Component{
             }
  
         }
-        {/*通过combineReducers将多个reducer合并*/}
+        //通过combineReducers将多个reducer合并
         const rootReducer=combineReducers({
             counter:countReducer,
             post:postReducer
         })
-        {/*创建一个store*/}
+        //创建一个store
         const countStore=createStore(rootReducer);
-        {/*本页面采用grid栅格响应式布局
-             可以通过createStore提供的dispatch方法派发一个action改变reducer的值
-             action需要两个参数
-                1、type 区分对state做的是什么操作
-                2、payload 传递的参数
-        */}
+            //  可以通过createStore提供的dispatch方法派发一个action改变reducer的值
+            //  action需要两个参数
+            //     1、type 区分对state做的是什么操作
+            //     2、payload 传递的参数
               countStore.dispatch({
                   type:"COUNT_ADD",
                   payload:{}
