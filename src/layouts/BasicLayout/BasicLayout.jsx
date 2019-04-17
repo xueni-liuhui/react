@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { createStore,combineReducers } from 'redux';
+import { createStore,combineReducers,compose,applyMiddleware } from 'redux';
 import { Row, Col } from 'antd';
+import axios from 'axios';
+import thunk from 'redux-thunk';
 //本页面采用grid栅格响应式布局
 export default class BasicLayout extends Component{
     render(){
@@ -33,30 +35,42 @@ export default class BasicLayout extends Component{
         }
         //通过combineReducers将多个reducer合并
         const rootReducer=combineReducers({
-            counter:countReducer,
-            post:postReducer
+                            counter:countReducer,
+                            post:postReducer
         })
         //创建一个store
-        const countStore=createStore(rootReducer);
+        // const countStore=createStore(
+        //     rootReducer,
+        //     compose(applyMiddleware(...[thunk])),
+        // )
+        const store=createStore(//通过thunk中间件异步派发活动
+                            rootReducer,
+                            compose(applyMiddleware(...[thunk])),
+        )
             //  可以通过createStore提供的dispatch方法派发一个action改变reducer的值
             //  action需要两个参数
             //     1、type 区分对state做的是什么操作
             //     2、payload 传递的参数
-              countStore.dispatch({
-                  type:"COUNT_ADD",
-                  payload:{}
-              });
-              countStore.dispatch({
-                  type:"COUNT_REDUCE",
-                  payload:{}
-              });
-              countStore.dispatch({
-                  type:"LOAD_POSTS",
-                  payload:{}
-              })
-        console.log(countStore,countStore.getState());
-     
-     
+            //   countStore.dispatch({
+            //       type:"COUNT_ADD",
+            //       payload:{}
+            //   });
+            //   countStore.dispatch({
+            //       type:"COUNT_REDUCE",
+            //       payload:{}
+            //   });
+        //console.log(countStore,countStore.getState());
+        const fetchData=()=>{
+            return axios.get("http://jsonplaceholder.typicode.com/posts")
+        }
+        store.dispatch(async function(dispatch){
+               const res=await fetchData();
+               console.log(res);
+               dispatch({
+                   type:"LOAD_POSTS",
+                   payload:res.data
+               })
+        })
         return(
             <div>
                 {/* 头部占比百分百布局 */}
