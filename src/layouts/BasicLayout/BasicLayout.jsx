@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { createStore,combineReducers,compose,applyMiddleware } from 'redux';
-import { Row, Col } from 'antd';
+import { Row, Col ,Button} from 'antd';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import thunk from 'redux-thunk';
+import BasicRoutes from './BasicRoutes';
 //本页面采用grid栅格响应式布局
 export default class BasicLayout extends Component{
     render(){
         //redux中三大重要部分，reducer、action、state
         const countReducer=function(state={count:1},action){
-                    console.log(state,action)
+                   // console.log(state,action)
                     switch(action.type){
                         case "COUNT_ADD":
                             return {
@@ -31,7 +33,7 @@ export default class BasicLayout extends Component{
                 default:
                   return state;
             }
- 
+
         }
         //通过combineReducers将多个reducer合并
         const rootReducer=combineReducers({
@@ -65,7 +67,7 @@ export default class BasicLayout extends Component{
         }
         store.dispatch(async function(dispatch){
                const res=await fetchData();
-               console.log(res);
+               //console.log(res);
                dispatch({
                    type:"LOAD_POSTS",
                    payload:res.data
@@ -78,11 +80,15 @@ export default class BasicLayout extends Component{
                       <Col style={{backgroundColor:"yellow",height:"100px"}}      sm={24} md={24} lg={24}  xl={24}  xxl={24}>col-6 col-pull-18</Col>
                 </Row>
                 {/* 内容body部门。两边留白+响应式布局， */}
-                <Row>       
+                <Row>
+                            <Col style={{backgroundColor:"red",height:"800px"}}   sm={0}  md={0}  lg={0}   xl={2}  xxl={4}>
+                              <Link to={"/redux/study"}><Button type="primary">Redux学习第一节</Button></Link>
+                            </Col>
+                            <Col style={{backgroundColor:"#fff",height:"800px"}} sm={24} md={24} lg={24}  xl={20} xxl={16}>
+                                        <BasicRoutes/>
+                            </Col>
                             <Col style={{backgroundColor:"red",height:"800px"}}   sm={0}  md={0}  lg={0}   xl={2}  xxl={4}>col-6 col-pull-18</Col>
-                            <Col style={{backgroundColor:"green",height:"800px"}} sm={24} md={24} lg={24}  xl={20} xxl={16}>col-18 col-push-6</Col>
-                            <Col style={{backgroundColor:"red",height:"800px"}}   sm={0}  md={0}  lg={0}   xl={2}  xxl={4}>col-6 col-pull-18</Col>
-                </Row> 
+                </Row>
                 <Row>
                       <Col style={{backgroundColor:"pink",height:"60px"}} sm={24}  md={24}  lg={24}   xl={24}  xxl={24}>col-6 col-pull-18</Col>
                 </Row>
