@@ -82,7 +82,9 @@ export default class BasicLayout extends Component{
                 {/* 内容body部门。两边留白+响应式布局， */}
                 <Row>
                             <Col style={{backgroundColor:"red",height:"800px"}}   sm={0}  md={0}  lg={0}   xl={2}  xxl={4}>
-                              <Link to={"/redux/study"}><Button type="primary">Redux学习第一节</Button></Link>
+                              <Link to={"/redux/study"}><Button type="primary">Redux学习</Button></Link>
+                              <br/>
+                              <Link to={"/react/redux/study"}><Button type="primary">React-Redux</Button></Link>
                             </Col>
                             <Col style={{backgroundColor:"#fff",height:"800px"}} sm={24} md={24} lg={24}  xl={20} xxl={16}>
                                         <BasicRoutes/>
