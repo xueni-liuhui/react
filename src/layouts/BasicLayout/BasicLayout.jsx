@@ -87,6 +87,8 @@ export default class BasicLayout extends Component{
                               <Link to={"/react/redux/study"}><Button type="primary">React-Redux</Button></Link>
                               <br/>
                               <Link to={"/redux/todo/list"}><Button type="primary">ToDoList</Button></Link>
+                              <br/>
+                              <Link to={"/react/map"}><Button type="primary">ReactMap</Button></Link>
                             </Col>
                             <Col style={{backgroundColor:"#fff",height:"800px"}} sm={24} md={24} lg={24}  xl={20} xxl={16}>
                                         <BasicRoutes/>
