@@ -80,7 +80,7 @@ export default class BasicLayout extends Component{
                       <Col style={{backgroundColor:"yellow",height:"100px"}}      sm={24} md={24} lg={24}  xl={24}  xxl={24}>col-6 col-pull-18</Col>
                 </Row>
                 {/* 内容body部门。两边留白+响应式布局， */}
-                <Row>
+                <Row style={{position:"relative"}}>
                             <Col style={{backgroundColor:"red",height:"800px"}}   sm={0}  md={0}  lg={0}   xl={2}  xxl={4}>
                               <Link to={"/redux/study"}><Button type="primary">Redux学习</Button></Link>
                               <br/>
@@ -89,6 +89,12 @@ export default class BasicLayout extends Component{
                               <Link to={"/redux/todo/list"}><Button type="primary">ToDoList</Button></Link>
                               <br/>
                               <Link to={"/react/map"}><Button type="primary">ReactMap</Button></Link>
+                              <br/>
+                              <Link to={"/react/loop"}><Button type="primary">ReactLoop</Button></Link>
+                              <br/>
+                              <Link to={"/react/excel"}><Button type="primary">ReactExcel</Button></Link>
+                              <br/>
+                              <Link to={"/china/water"}><Button type="primary">ChinaWater</Button></Link>
                             </Col>
                             <Col style={{backgroundColor:"#fff",height:"800px"}} sm={24} md={24} lg={24}  xl={20} xxl={16}>
                                         <BasicRoutes/>
