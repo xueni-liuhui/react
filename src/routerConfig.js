@@ -5,6 +5,8 @@ import ReactMap from './pages/ReactMap';
 import ReactLoop from './pages/ReactLoop';
 import ReactExcelDownload from './pages/ReactExcelDownload';
 import ChinaWater from './pages/ChinaWater';
+import RichEditor from './pages/RichEditor';
+import BraftEditor from './pages/BraftEditor';
 const  basicRoutes=[
   {
     path:"/redux/study",
@@ -33,6 +35,14 @@ const  basicRoutes=[
   {
     path:"/china/water",
     component:ChinaWater
+  },
+  {
+    path:"/rich/editor",
+    component:RichEditor
+  },
+  {
+    path:'/braft/editor',
+    component:BraftEditor
   }
 ]
 

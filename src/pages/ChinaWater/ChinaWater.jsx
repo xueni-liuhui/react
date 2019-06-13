@@ -21,7 +21,7 @@ class ChinaWater extends Component {
         tooltip:{trigger:'axis'},
         geo:{
           map:"china",
-          roam : false,
+          roam : true,
           zoom : 1.2,
           label:{
             emphasis:{
@@ -236,9 +236,42 @@ class ChinaWater extends Component {
     barObj.setOption(option);
 
   }
+  throttle=(fn,delay,debounce)=>{
+    let currCall,lastCall=0,lastExec=0,timer=null,diff,scope,args;
+    delay=delay||0;
+    function exec() {
+      lastExec = (new Date()).getTime();
+      timer = null;
+      fn.apply(scope, args || []);
+    }
+    const  cb=function () {
+      currCall = (new Date()).getTime();
+      scope = this;
+      args = arguments;
+      diff = currCall - (debounce ? lastCall : lastExec) - delay;
+      clearTimeout(timer);
+      if (debounce) {
+        timer = setTimeout(exec, delay);
+      }else{
+        if (diff >= 0) {
+          exec();
+        }
+        else {
+          timer = setTimeout(exec, -diff);
+        }
+        lastCall = currCall;
+      }
+    }
+
+  }
+  handleRoam=(obj)=>{
+    console.log(obj)
+    this.throttle(this.renderEachProvince(), 0);
+  }
   render() {
     const events={
-      "click":this.handleClick
+      "click":this.handleClick,
+      "geoRoam":this.handleRoam
     }
     return (
       <div  className="wrap" style={{width:"800px",height:"800px",border:"1px solid red",position:"relative"}}>

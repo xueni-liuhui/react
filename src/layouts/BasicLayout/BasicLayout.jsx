@@ -95,6 +95,10 @@ export default class BasicLayout extends Component{
                               <Link to={"/react/excel"}><Button type="primary">ReactExcel</Button></Link>
                               <br/>
                               <Link to={"/china/water"}><Button type="primary">ChinaWater</Button></Link>
+                              <br/>
+                              <Link to={"/rich/editor"}><Button type="primary">富文本</Button></Link>
+                              <br/>
+                              <Link to={"/braft/editor"}><Button type="primary">Braft富文本</Button></Link>
                             </Col>
                             <Col style={{backgroundColor:"#fff",height:"800px"}} sm={24} md={24} lg={24}  xl={20} xxl={16}>
                                         <BasicRoutes/>
